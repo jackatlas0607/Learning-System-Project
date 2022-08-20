@@ -12,6 +12,7 @@ const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
+const port = process.env.PORT || 3000;
 
 mongoose
   .connect(process.env.DB_CONNECT, {
@@ -62,6 +63,6 @@ app.get("/*", (req, res) => {
   res.status(404).send("Page not found.");
 });
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080.");
+app.listen(port, () => {
+  console.log("Server is running on port " + port + ".");
 });
