@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>SignUp</title>
+  </head>
+  <body>
+    <%- include ("partials/nav") %>
+    <main style="padding: 3rem">
+      <%- include ("partials/message") %>
+      <form action="/auth/signup" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter full name"
+            name="name"
+            required
+          />
+          <div id="emailHelp" class="form-text">Enter Full Name here</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email"
+            required
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+              onclick="showPassword()"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Show Password
+            </label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Role</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="role"
+          >
+            <option value="instructor">Instructor</option>
+            <option value="student">Student</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </main>
+  </body>
+  <script>
+    function showPassword() {
+      let showPassword = document.querySelector("#exampleInputPassword1");
+      if (showPassword.type === "password") {
+        showPassword.type = "text";
+      } else {
+        showPassword.type = "password";
+      }
+    }
+  </script>
+</html>

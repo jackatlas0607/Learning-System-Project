@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include ("partials/nav") %>
+    <main style="padding: 3rem">
+      <form action="/instructor/postcourse" method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Enter title"
+            name="title"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Content</label>
+          <br />
+          <textarea
+            class="form-control"
+            placeholder="Enter content"
+            name="content"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="Enter price"
+            name="price"
+            max="500"
+            min="0"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>Select Role</title>
+  </head>
+  <body>
+    <%- include ("partials/nav") %>
+    <main style="padding: 3rem">
+      <form action="/auth/selectRole" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Role</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="role"
+          >
+            <option value=""></option>
+            <option value="instructor">Instructor</option>
+            <option value="student">Student</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>

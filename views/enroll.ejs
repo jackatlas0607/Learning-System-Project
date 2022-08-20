@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include ("partials/nav") %> 
+    <form
+      class="form-inline my-2 my-lg-0"
+      style="display: flex; width: 100vw; padding: 2rem"
+      action="/student/searchcourse"
+      method="POST"
+    >
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        name="search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+    
+      <div  style = "display: flex; flex-wrap: wrap;"">
+        <% if(courses.length>0){ %> <% for(let i=0; i < courses.length; i++){ %>
+          <form action="/student/enroll/<%= courses[i].title %>" method="POST">
+        <div class="card" style="width: 18rem; margin: 2rem">
+          <div class="card-body">
+            <h5 class="card-title"><%= courses[i].title %></h5>
+            <p class="card-text">content: <%= courses[i].content %></p>
+            <p class="card-text" >instructor: <%= courses[i].instructor %></p>
+            <p class="card-text">price: <%= courses[i].price %></p>
+            <p class="card-text"><%= courses[i].date.toString().slice(0,16) %></p>
+            <p class="card-text">Total Students: <%= courses[i].students.length %></p>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 6rem; margin-left: 6rem;">Enroll</button>
+        </div>
+          </form>
+      <% } %> <% } %>
+   
+    </div>
+    
+  </body>
+</html>

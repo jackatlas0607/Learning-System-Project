@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Learning System</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/">Home</a>
+        <% if(!user){ %>
+        <a class="nav-link" href="/auth/signup">Register</a>
+        <a class="nav-link" href="/auth/login">Login</a>
+        <% } %> <% if(user){ %> <% if(user.role==="instructor"){%>
+        <a class="nav-link" href="/instructor">Instructor</a>
+        <a class="nav-link" href="/instructor/course">Course</a>
+        <a class="nav-link" href="/instructor/postcourse">Post Course</a>
+        <a class="nav-link" href="/auth/logout">Logout</a>
+        <% }else{ %>
+        <a class="nav-link" href="/student">Student</a>
+        <a class="nav-link" href="/student/course">Course</a>
+        <a class="nav-link" href="/student/enroll">Enroll</a>
+        <a class="nav-link" href="/auth/logout">Logout</a>
+        <% } %> <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include ("partials/nav") %>
+    <h1 style="margin: 2rem 1rem">
+      Welcome to Student <%= user.name %>'s course page.
+    </h1>
+    <%- include ("partials/message") %> 
+    <div  style = "display: flex; flex-wrap: wrap;"">
+      <% if(courses.length>0){ %> <% for(let i=0; i < courses.length; i++){ %>
+        <form action="/student/enroll/<%= courses[i].title %>?_method=DELETE" method="POST">
+
+      <div class="card" style="width: 18rem; margin: 2rem">
+        <div class="card-body">
+          <h5 class="card-title"><%= courses[i].title %></h5>
+          <p class="card-text">content: <%= courses[i].content %></p>
+          <p class="card-text">instructor: <%= courses[i].instructor %></p>
+          <p class="card-text">price: <%= courses[i].price %></p>
+          <p class="card-text">Total Students: <%= courses[i].students.length%></p>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 6rem; margin-left: 6rem;">Delete</button>
+      </div>
+    </form>
+    <% } %> <% } %>
+  </div>
+  </body>
+</html>

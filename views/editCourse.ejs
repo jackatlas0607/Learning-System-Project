@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("partials/header") %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include ("partials/nav") %>
+    <main style="padding: 3rem">
+      <form
+        action="/instructor/course/<%= edit.title %>?_method=PUT "
+        method="POST"
+      >
+        <div class="mb-3">
+          <h2>Course <%= edit.title %></h2>
+          <br />
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Content</label>
+          <br />
+          <textarea
+            class="form-control"
+            placeholder="Enter content"
+            name="content"
+          >
+<%= edit.content %> 
+      </textarea
+          >
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="Enter price"
+            name="price"
+            value="<%= edit.price %>"
+            max="500"
+            min="0"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
