@@ -68,12 +68,12 @@ router.get(
   async (req, res) => {
     let foundUser = await User.findOne({ googleID: req.user.googleID });
     if (foundUser.role === "undefined") {
-      res.render("selectRole");
+      res.render("selectRole", { user: req.user });
     } else {
       if (req.user.role === "instructor") {
-        res.redirect("/instructor");
+        res.redirect("/instructor", { user: req.user });
       } else {
-        res.redirect("/student");
+        res.redirect("/student", { user: req.user });
       }
     }
   }
