@@ -7,13 +7,24 @@
   <body>
     <%- include ("partials/nav") %>
     <main style="padding: 3rem">
+      <%- include ("partials/message") %>
       <form
         action="/instructor/course/<%= edit.title %>?_method=PUT "
         method="POST"
       >
         <div class="mb-3">
-          <h2>Course <%= edit.title %></h2>
-          <br />
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Enter title"
+            name="title"
+            minlength="2"
+            maxlength="30"
+            value="<%= edit.title %>"
+            required
+          />
         </div>
         <div class="mb-3">
           <label for="title" class="form-label">Content</label>
@@ -22,6 +33,7 @@
             class="form-control"
             placeholder="Enter content"
             name="content"
+            required
           >
 <%= edit.content %> 
       </textarea

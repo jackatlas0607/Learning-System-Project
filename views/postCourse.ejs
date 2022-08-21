@@ -7,6 +7,7 @@
   <body>
     <%- include ("partials/nav") %>
     <main style="padding: 3rem">
+      <%- include ("partials/message") %>
       <form action="/instructor/postcourse" method="POST">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
@@ -27,9 +28,8 @@
           <textarea
             class="form-control"
             placeholder="Enter content"
-            minlength="1"
-            maxlength="500"
             name="content"
+            required
           ></textarea>
         </div>
         <div class="mb-3">

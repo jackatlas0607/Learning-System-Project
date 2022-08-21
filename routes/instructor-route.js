@@ -20,20 +20,26 @@ router.get("/course", authCheck, async (req, res) => {
 });
 
 router.get("/course/:title", authCheck, async (req, res) => {
-  let editCourse = await Course.findOne({ title: req.params.title });
+  let { title } = req.params;
+  let editCourse = await Course.findOne({ title });
   console.log(editCourse);
   res.render("editCourse", { user: req.user, edit: editCourse });
 });
 
 router.put("/course/:title", authCheck, async (req, res) => {
-  let { title } = req.params;
+  let oldTitle = req.params.title;
+  let newTitle = req.body.title;
   let { content, price } = req.body;
   try {
-    await Course.updateOne({ title }, { content, price });
+    await Course.updateOne(
+      { title: oldTitle },
+      { title: newTitle, content, price }
+    );
     req.flash("success_msg", "Edit course success.");
     res.redirect("/instructor/course");
   } catch (err) {
-    res.redirect(`/instructor/course/${title}`);
+    req.flash("error_msg", "Please input content.");
+    res.redirect(`/instructor/course/${oldTitle}`);
   }
 });
 
@@ -55,6 +61,7 @@ router.post("/postcourse", authCheck, async (req, res) => {
     req.flash("success_msg", "Post course success.");
     res.status(200).redirect("/instructor/course");
   } catch (err) {
+    req.flash("error_msg", "Please input content.");
     res.redirect("/instructor/postcourse");
   }
 });
