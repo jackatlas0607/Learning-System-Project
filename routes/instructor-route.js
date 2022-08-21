@@ -55,6 +55,7 @@ router.post("/postcourse", authCheck, async (req, res) => {
     req.flash("success_msg", "Post course success.");
     res.status(200).redirect("/instructor/course");
   } catch (err) {
+    req.flash("error_msg", "You should input content.");
     res.redirect("/instructor/postcourse");
   }
 });
