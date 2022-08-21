@@ -30,8 +30,9 @@ router.get("/enroll", authCheck, async (req, res) => {
   res.render("enroll", { user: req.user, courses: foundCourse });
 });
 
-router.delete("/enroll/:title", authCheck, async (req, res) => {
-  let deleteCourse = await Course.findOne({ title: req.params.title });
+router.delete("/enroll/:_id", authCheck, async (req, res) => {
+  let { _id } = req.params;
+  let deleteCourse = await Course.findOne({ _id });
   console.log(deleteCourse);
   const deleteIndex = deleteCourse.students.findIndex((object) => {
     return object.name == req.user.name;
@@ -47,8 +48,9 @@ router.delete("/enroll/:title", authCheck, async (req, res) => {
   }
 });
 
-router.post("/enroll/:title", authCheck, async (req, res) => {
-  let enrollCourse = await Course.findOne({ title: req.params.title });
+router.post("/enroll/:_id", authCheck, async (req, res) => {
+  let { _id } = req.params;
+  let enrollCourse = await Course.findOne({ _id });
   console.log(enrollCourse);
 
   enrollCourse.students.push({ name: req.user.name });

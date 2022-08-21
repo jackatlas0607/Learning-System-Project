@@ -19,27 +19,24 @@ router.get("/course", authCheck, async (req, res) => {
   res.render("instructorCourse", { user: req.user, courses: courseFound });
 });
 
-router.get("/course/:title", authCheck, async (req, res) => {
-  let { title } = req.params;
-  let editCourse = await Course.findOne({ title });
+router.get("/course/:_id", authCheck, async (req, res) => {
+  let { _id } = req.params;
+  let editCourse = await Course.findOne({ _id });
   console.log(editCourse);
   res.render("editCourse", { user: req.user, edit: editCourse });
 });
 
-router.put("/course/:title", authCheck, async (req, res) => {
-  let oldTitle = req.params.title;
+router.put("/course/:_id", authCheck, async (req, res) => {
+  let { _id } = req.params;
   let newTitle = req.body.title;
   let { content, price } = req.body;
   try {
-    await Course.updateOne(
-      { title: oldTitle },
-      { title: newTitle, content, price }
-    );
+    await Course.updateOne({ _id }, { title: newTitle, content, price });
     req.flash("success_msg", "Edit course success.");
     res.redirect("/instructor/course");
   } catch (err) {
     req.flash("error_msg", "Please input content.");
-    res.redirect(`/instructor/course/${oldTitle}`);
+    res.redirect(`/instructor/course/${_id}`);
   }
 });
 

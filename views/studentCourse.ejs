@@ -12,7 +12,7 @@
     <%- include ("partials/message") %> 
     <div  style = "display: flex; flex-wrap: wrap;"">
       <% if(courses.length>0){ %> <% for(let i=0; i < courses.length; i++){ %>
-        <form action="/student/enroll/<%= courses[i].title %>?_method=DELETE" method="POST">
+        <form action="/student/enroll/<%= courses[i]._id %>?_method=DELETE" method="POST">
 
       <div class="card" style="width: 18rem; margin: 2rem">
         <div class="card-body">
